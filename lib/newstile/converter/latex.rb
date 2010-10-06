@@ -50,7 +50,6 @@ module Newstile
         el.children.each_with_index do |inner_el, index|
           options[:index] = index
           options[:result] = result
-          puts "convert_#{inner_el.type}"
           result << send("convert_#{inner_el.type}", inner_el, options)
         end
         result
