@@ -66,7 +66,7 @@ module Newstile
       NEWSTILE_HEADER_MATCH = /^(\!{1,6})(.+?)\s*?#*#{HEADER_ID}\s*?\n/
 
       # Parse the Atx header at the current location.
-      def parse_atx_header
+      def parse_newstile_header
         return false if !after_block_boundary?
 
         result = @src.scan(NEWSTILE_HEADER_MATCH)
