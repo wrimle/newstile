@@ -1,7 +1,8 @@
 # newstile
 
-newstile is yet-another-markdown-parser but fast, pure Ruby, using a strict syntax definition and
-supporting several common extensions.
+newstile is newstile-parser. It is forked off Thomas Leitner's markdown parser kramdown, and
+modified to support the newstile syntax. Newstile is a markdown dialect optimized for fast typing
+on mobile devices like iPhone and Android phones.
 
 The syntax definition can be found in doc/syntax.page, a quick reference in doc/quickref.page. All
 the documentation is available online at http://newstile.rubyforge.org.
