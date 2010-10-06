@@ -1,0 +1,61 @@
+.TH "KRAMDOWN" 1 "July 2010"
+.SH NAME
+newstile \- a fast, pure-Ruby Markdown-superset converter
+.SH SYNOPSIS
+.B newstile
+[\fIoptions\fR]
+[\fIFILE\fR ...]
+.SH DESCRIPTION
+newstile is primarily used for parsing a superset of Markdown and converting it to different output
+formats. It supports standard Markdown (with some minor modifications) and various extensions like
+tables and definition lists. Due to its modular architecture it also allows other input formats than
+Markdown, for example, HTML.
+
+If \fIFILE\fR is not specified, newstile reads from the standard input. The result is written to the
+standard output.
+
+There are two sets of options that newstile accepts: The first one includes the options that are
+used directly by the newstile binary. The second set of options controls how newstile parses and
+converts its input.
+.SH OPTIONS
+.TP
+.B \-i, \-\-input ARG
+Specify the input format. Available input formats: newstile (this is the default) or html.
+.TP
+.B \-o, \-\-output ARG
+Specify the output format. Available output formats: html (this is the default), newstile or latex.
+.TP
+.B \-v, \-\-version
+Show the version of newstile.
+.TP
+.B \-h, \-\-help
+Show the help.
+
+.SH KRAMDOWN OPTIONS
+<%
+require 'newstile/document'
+
+Newstile::Options.definitions.each do |n, definition|
+  n = n.to_s.tr('_', '-')
+  if definition.type == Newstile::Options::Boolean %>
+.TP
+.B \-\-[no\-]<%= n %>
+<% else
+    next if definition.type == Object
+    type = definition.type
+    type = String if type == Symbol %>
+.TP
+.B \-\-<%= n %> ARG
+<% end %>
+<%= definition.desc %>
+<% end %>
+.SH EXIT STATUS
+The exit status is 0 if no error happened. Otherwise it is 1.
+.SH SEE ALSO
+The newstile website, http://newstile.rubyforge.org/ for more information, especially on the supported
+input syntax.
+.SH AUTHOR
+newstile was written by Thomas Leitner <t_leitner@gmx.at>.
+.PP
+This manual page was written by Thomas Leitner <t_leitner@gmx.at>.
+

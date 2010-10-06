@@ -1,9 +1,9 @@
 ---
-title: kramdown News
-description: kramdown - a fast, pure Ruby Markdown-superset converter
-site_url: http://kramdown.rubyforge.org/
+title: newstile News
+description: newstile - a fast, pure Ruby Markdown-superset converter
+site_url: http://newstile.rubyforge.org/
 author: Thomas Leitner
-author_url: http://kramdown.rubyforge.org
+author_url: http://newstile.rubyforge.org
 number_of_entries: 10
 rss: false
 entries: [news/*.html]

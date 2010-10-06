@@ -3,9 +3,9 @@
 #--
 # Copyright (C) 2009 Thomas Leitner <t_leitner@gmx.at>
 #
-# This file is part of kramdown.
+# This file is part of newstile.
 #
-# kramdown is free software: you can redistribute it and/or modify
+# newstile is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
@@ -21,7 +21,7 @@
 #
 
 require 'test/unit'
-require 'kramdown'
+require 'newstile'
 require 'yaml'
 require 'tmpdir'
 
@@ -29,7 +29,7 @@ Encoding.default_external = 'utf-8' if RUBY_VERSION >= '1.9'
 
 class TestFiles < Test::Unit::TestCase
 
-  # Generate test methods for kramdown-to-xxx conversion
+  # Generate test methods for newstile-to-xxx conversion
   Dir[File.dirname(__FILE__) + '/testcases/**/*.text'].each do |text_file|
     basename = text_file.sub(/\.text$/, '')
     opts_file = text_file.sub(/\.text$/, '.options')
@@ -37,11 +37,11 @@ class TestFiles < Test::Unit::TestCase
       next if (RUBY_VERSION >= '1.9' && File.exist?(output_file + '.19')) ||
         (RUBY_VERSION < '1.9' && output_file =~ /\.19$/)
       output_format = File.extname(output_file.sub(/\.19$/, ''))[1..-1]
-      next if !Kramdown::Converter.const_defined?(output_format[0..0].upcase + output_format[1..-1])
+      next if !Newstile::Converter.const_defined?(output_format[0..0].upcase + output_format[1..-1])
       define_method('test_' + text_file.tr('.', '_') + "_to_#{output_format}") do
         opts_file = File.join(File.dirname(text_file), 'options') if !File.exist?(opts_file)
         options = File.exist?(opts_file) ? YAML::load(File.read(opts_file)) : {:auto_ids => false, :footnote_nr => 1}
-        doc = Kramdown::Document.new(File.read(text_file), options)
+        doc = Newstile::Document.new(File.read(text_file), options)
         assert_equal(File.read(output_file), doc.send("to_#{output_format}"))
       end
     end
@@ -59,7 +59,7 @@ class TestFiles < Test::Unit::TestCase
     Dir[File.dirname(__FILE__) + '/testcases/**/*.html'].each do |html_file|
       next if EXCLUDE_HTML_FILES.any? {|f| html_file =~ /#{f}$/}
       define_method('test_' + html_file.tr('.', '_') + "_to_html") do
-        doc = Kramdown::Document.new(File.read(html_file), :input => 'html', :auto_ids => false, :footnote_nr => 1)
+        doc = Newstile::Document.new(File.read(html_file), :input => 'html', :auto_ids => false, :footnote_nr => 1)
         assert_equal(tidy_output(File.read(html_file)), tidy_output(doc.to_html))
       end
     end
@@ -90,7 +90,7 @@ class TestFiles < Test::Unit::TestCase
     Dir[File.dirname(__FILE__) + '/testcases/**/*.text'].each do |text_file|
       next if EXCLUDE_LATEX_FILES.any? {|f| text_file =~ /#{f}$/}
       define_method('test_' + text_file.tr('.', '_') + "_to_latex_compilation") do
-        latex =  Kramdown::Document.new(File.read(text_file),
+        latex =  Newstile::Document.new(File.read(text_file),
                                                           :auto_ids => false, :footnote_nr => 1,
                                                           :template => 'document').to_latex
         result = IO.popen("latex -output-directory='#{Dir.tmpdir}' 2>/dev/null", 'r+') do |io|
@@ -103,10 +103,10 @@ class TestFiles < Test::Unit::TestCase
     end
   end
 
-  # Generate test methods for text->kramdown->html conversion
+  # Generate test methods for text->newstile->html conversion
   `tidy -v 2>&1`
   if $?.exitstatus != 0
-    warn("Skipping text->kramdown->html tests because tidy executable is missing")
+    warn("Skipping text->newstile->html tests because tidy executable is missing")
   else
     EXCLUDE_TEXT_FILES = ['test/testcases/span/05_html/markdown_attr.text',  # bc of markdown attr
                           'test/testcases/block/09_html/markdown_attr.text', # bc of markdown attr
@@ -121,23 +121,23 @@ class TestFiles < Test::Unit::TestCase
                          ]
     Dir[File.dirname(__FILE__) + '/testcases/**/*.text'].each do |text_file|
       next if EXCLUDE_TEXT_FILES.any? {|f| text_file =~ /#{f}$/}
-      define_method('test_' + text_file.tr('.', '_') + "_to_kramdown_to_html") do
+      define_method('test_' + text_file.tr('.', '_') + "_to_newstile_to_html") do
         html_file = text_file.sub(/\.text$/, '.html')
         html_file += '.19' if RUBY_VERSION >= '1.9' && File.exist?(html_file + '.19')
         opts_file = text_file.sub(/\.text$/, '.options')
         opts_file = File.join(File.dirname(text_file), 'options') if !File.exist?(opts_file)
         options = File.exist?(opts_file) ? YAML::load(File.read(opts_file)) : {:auto_ids => false, :footnote_nr => 1}
-        kdtext = Kramdown::Document.new(File.read(text_file), options).to_kramdown
-        html = Kramdown::Document.new(kdtext, options).to_html
+        kdtext = Newstile::Document.new(File.read(text_file), options).to_newstile
+        html = Newstile::Document.new(kdtext, options).to_html
         assert_equal(tidy_output(File.read(html_file)), tidy_output(html))
       end
     end
   end
 
-  # Generate test methods for html-to-kramdown-to-html conversion
+  # Generate test methods for html-to-newstile-to-html conversion
   `tidy -v 2>&1`
   if $?.exitstatus != 0
-    warn("Skipping html-to-kramdown-to-html tests because tidy executable is missing")
+    warn("Skipping html-to-newstile-to-html tests because tidy executable is missing")
   else
     EXCLUDE_HTML_KD_FILES = ['test/testcases/span/extension/options.html',        # bc of parse_span_html option
                              'test/testcases/span/05_html/normal.html',           # bc of br tag before closing p tag
@@ -151,9 +151,9 @@ class TestFiles < Test::Unit::TestCase
                             ]
     Dir[File.dirname(__FILE__) + '/testcases/**/*.html'].each do |html_file|
       next if EXCLUDE_HTML_KD_FILES.any? {|f| html_file =~ /#{f}$/}
-      define_method('test_' + html_file.tr('.', '_') + "_to_kramdown_to_html") do
-        kd = Kramdown::Document.new(File.read(html_file), :input => 'html', :auto_ids => false, :footnote_nr => 1).to_kramdown
-        doc = Kramdown::Document.new(kd, :auto_ids => false, :footnote_nr => 1)
+      define_method('test_' + html_file.tr('.', '_') + "_to_newstile_to_html") do
+        kd = Newstile::Document.new(File.read(html_file), :input => 'html', :auto_ids => false, :footnote_nr => 1).to_newstile
+        doc = Newstile::Document.new(kd, :auto_ids => false, :footnote_nr => 1)
         assert_equal(tidy_output(File.read(html_file)), tidy_output(doc.to_html))
       end
     end

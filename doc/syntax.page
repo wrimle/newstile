@@ -8,24 +8,24 @@ sort_info: 10
 {menu: {used_nodes: fragments, min_levels: 4, max_levels: 6}}
 --- name:content
 
-# kramdown Syntax
+# newstile Syntax
 
-This is version **<%= ::Kramdown::VERSION %>** of the syntax documentation.
+This is version **<%= ::Newstile::VERSION %>** of the syntax documentation.
 
-The kramdown syntax is based on the Markdown syntax and has been enhanced with features that are
+The newstile syntax is based on the Markdown syntax and has been enhanced with features that are
 found in other Markdown implementations like [Maruku], [PHP Markdown Extra] and [Pandoc]. However,
 it strives to provide a strict syntax with definite rules and therefore isn't completely compatible
-with Markdown. Nonetheless, most Markdown documents should work fine when parsed with kramdown. All
-places where the kramdown syntax differs from the Markdown syntax are highlighted.
+with Markdown. Nonetheless, most Markdown documents should work fine when parsed with newstile. All
+places where the newstile syntax differs from the Markdown syntax are highlighted.
 
-Following is the complete syntax definition for all elements kramdown supports. Together with the
-documentation on the available converters, it is clearly specified what you will get when a kramdown
+Following is the complete syntax definition for all elements newstile supports. Together with the
+documentation on the available converters, it is clearly specified what you will get when a newstile
 document is converted.
 
 
 ## Source Text Formatting
 
-A kramdown document may be in any encoding, for example ASCII, UTF-8 or ISO-8859-1, and the output
+A newstile document may be in any encoding, for example ASCII, UTF-8 or ISO-8859-1, and the output
 will have the same encoding as the source.
 
 The document consists of two types of elements, block level elements and span level elements:
@@ -40,14 +40,14 @@ Thus span level elements can only occur inside block level elements or other spa
 You will often find references to the "first column" or "first character" of a line in a block level
 element descriptions. Such a reference is always to be taken relative to the current indentation
 level because some block level elements open up a new indentation level (e.g. blockquotes). The
-beginning of a kramdown document opens up the default indentation level which begins at the first
+beginning of a newstile document opens up the default indentation level which begins at the first
 column of the text.
 
 
 ## Line Wrapping
 
 Some lightweight markup syntax don't work well in environments where lines are hard-wrapped. For
-example, this is the case with many email programs. Therefore kramdown allows content like
+example, this is the case with many email programs. Therefore newstile allows content like
 paragraphs or blockquotes to be hard-wrapped, i.e. broken across lines. This is sometimes referred
 to as "lazy syntax" since the indentation or line prefix required for the first line of content is
 not required for the consecutive lines.
@@ -60,19 +60,19 @@ encountered:
 
 *  or an [HTML block](#html-blocks).
 
-Line wrapping is allowed throughout a kramdown document. There is one exception, however:
+Line wrapping is allowed throughout a newstile document. There is one exception, however:
 [headers](#headers) may not be wrapped across lines. This is not an issue in most situations since
 headers normally fit on one line. If a header text gets too long for one line, use HTML syntax
 instead.
 
-**Note** that it is **NOT** recommended to use lazy syntax to write a kramdown document. The
-flexibility that the kramdown syntax offers due to the issue of line wrapping hinders readability
+**Note** that it is **NOT** recommended to use lazy syntax to write a newstile document. The
+flexibility that the newstile syntax offers due to the issue of line wrapping hinders readability
 and should therefore not be used.
 
 
 ### Usage of Tabs
 
-kramdown assumes that tab stops are set at multiples of four. This is especially important when
+newstile assumes that tab stops are set at multiples of four. This is especially important when
 using tabs for indentation in lists. Also, tabs may only be used at the beginning of a line when
 indenting text and must not be preceded by spaces. Otherwise the results may be unexpected.
 
@@ -80,15 +80,15 @@ indenting text and must not be preceded by spaces. Otherwise the results may be 
 ### Automatic and Manual Escaping
 
 Depending on the output format, there are often characters that need special treatment. For example,
-when converting a kramdown document to HTML one needs to take care of the characters `<`, `>` and
+when converting a newstile document to HTML one needs to take care of the characters `<`, `>` and
 `&`. To ease working with these special characters, they are automatically and correctly escaped
 depending on the output format.
 
-This means, for example, that you can just use `<`, `>` and `&` in a kramdown document and need not
+This means, for example, that you can just use `<`, `>` and `&` in a newstile document and need not
 think about when to use their HTML entity counterparts. However, if you *do use* HTML entities or
 HTML tags which use one of the characters, the result will be correct nonetheless!
 
-Since kramdown also uses some characters to mark-up the text, there needs to be a way to escape
+Since newstile also uses some characters to mark-up the text, there needs to be a way to escape
 these special characters so that they can have their normal meaning. This can be done by using
 backslash escapes. For example, you can use a literal backtick like this:
 
@@ -140,7 +140,7 @@ can mark up some text as, for example, a simple paragraph, a quote or as a list 
 ## Blank lines
 
 Any line that just contains white space characters such as spaces and tabs is considered a blank
-line by kramdown. One or more consecutive blank lines are handled as one empty blank line. Blank
+line by newstile. One or more consecutive blank lines are handled as one empty blank line. Blank
 lines are used to separate block level elements from each other and in this case they don't have
 semantic meaning. However, there are some cases where blank lines do have a semantic meaning:
 
@@ -180,7 +180,7 @@ The following gives you an example of how paragraphs look like:
 
 ## Headers
 
-kramdown supports so called Setext style and atx style headers. Both forms can be used inside a
+newstile supports so called Setext style and atx style headers. Both forms can be used inside a
 single document.
 
 ### Setext Style
@@ -221,7 +221,7 @@ more appropriate and eases reading of the document.
 
 > The original Markdown syntax allows one to omit the blank line before a Setext header. However,
 > this leads to ambiguities and makes reading the document harder than necessary. Therefore it is
-> not allowed in a kramdown document.
+> not allowed in a newstile document.
 {: .markdown-difference}
 
 An edge case worth mentioning is the following:
@@ -255,7 +255,7 @@ close the header. Any leading or trailing spaces are stripped from the header te
 
 ### Specifying a Header ID
 
-kramdown supports a nice way for explicitly setting the header ID which is taken from [PHP Markdown
+newstile supports a nice way for explicitly setting the header ID which is taken from [PHP Markdown
 Extra] and [Maruku]: If you follow the header text with an opening curly bracket (separated from the
 text with a least one space), a hash, the ID and a closing curly bracket, the ID is set on the
 header. If you use the trailing hash feature of atx style headers, the header ID has to go after the
@@ -358,7 +358,7 @@ marker](#eob-marker) to separate the two:
 > from the [PHP Markdown Extra] package.
 {: .markdown-difference}
 
-kramdown also supports an alternative syntax for code blocks which does not use indented blocks but
+newstile also supports an alternative syntax for code blocks which does not use indented blocks but
 delimiting lines. The starting line needs to begin with three or more tilde characters (`~`) and the
 closing line needs to have at least the number of tildes the starting line has. Everything between
 is taken literally as with the other syntax but there is no need for indenting the text. For
@@ -383,7 +383,7 @@ code.
 
 ## Lists
 
-kramdown provides syntax elements for creating ordered and unordered lists as well as definition
+newstile provides syntax elements for creating ordered and unordered lists as well as definition
 lists.
 
 ### Ordered and Unordered lists
@@ -410,8 +410,8 @@ The following gives you an unordered list and an ordered list:
     3. now
 
 > The original Markdown syntax allows the markers of ordered and unordered lists to be mixed, the
-> first marker specifying the list type (ordered or unordered). This is not allowed in kramdown. As
-> stated, the above example will give you two lists (an unordered and an ordered) in kramdown and
+> first marker specifying the list type (ordered or unordered). This is not allowed in newstile. As
+> stated, the above example will give you two lists (an unordered and an ordered) in newstile and
 > only one unordered list in Markdown.
 {: .markdown-difference}
 
@@ -456,7 +456,7 @@ It is much better to write such a list in the following way:
 {: .markdown-difference}
 
 When using tabs for indenting the content of a list item, remember that tab stops occur at multiples
-of four for kramdown. Tabs are correctly converted to spaces for calculating the indentation. For
+of four for newstile. Tabs are correctly converted to spaces for calculating the indentation. For
 example:
 
     *   Using a tab to indent this line, the tab only counts as three spaces and therefore the
@@ -562,7 +562,7 @@ blank line but a sub list after it:
         spanning two lines
       * this is a nested list item.
 
-However, this is an often used syntax and is therefore support by kramdown.
+However, this is an often used syntax and is therefore support by newstile.
 
 If you want to start a paragraph with something that looks like a list item marker, you need to
 escape it. This is done by escaping the period in an ordered list or the list item marker in an
@@ -599,7 +599,7 @@ as span level elements.
 
 The following is a simple definition list:
 
-    kramdown
+    newstile
     : A Markdown-superset converter
 
     Maruku
@@ -622,7 +622,7 @@ definition minus one, whichever number is smaller. For example:
     definition term 2
     : This is the first line. Since the first non-space characters appears in column 3, all other
     lines have to be indented 2 spaces (or lazy syntax may be used after an indented line). This
-      tells kramdown that the lines belong to the definition.
+      tells newstile that the lines belong to the definition.
     :       This is the another definition for the same term. It uses a different number of spaces
             for indentation which is okay but should generally be avoided.
        : The definition marker is indented 3 spaces which is allowed but should also be avoided.
@@ -653,8 +653,8 @@ definition.
 > from the [PHP Markdown Extra] package.
 {: .markdown-difference}
 
-Sometimes one wants to include simple tabular data in a kramdown document for which using a
-full-blown HTML table is just too much. kramdown supports this with a simple syntax for ASCII
+Sometimes one wants to include simple tabular data in a newstile document for which using a
+full-blown HTML table is just too much. newstile supports this with a simple syntax for ASCII
 tables.
 
 Tables can be created with or without a leading pipe character: If the first line of a table
@@ -752,19 +752,19 @@ Also note
 
 * that the first line of a table must not have more than three spaces of indentation before the
   first none space character,
-* that each line of a table needs to have at least one not escaped pipe character so that kramdown
+* that each line of a table needs to have at least one not escaped pipe character so that newstile
   recognizes it as a line belonging to the table and
 * that tables have to start and end on [block boundaries](#block-boundaries)!
 
 > The table syntax differs from the one used in [PHP Markdown Extra] as follows:
 >
-> * kramdown tables do not need to have a table header.
-> * kramdown tables can be structured using separator lines.
-> * kramdown tables can contain a table footer.
-> * kramdown tables need to be separted from other block level elements.
+> * newstile tables do not need to have a table header.
+> * newstile tables can be structured using separator lines.
+> * newstile tables can contain a table footer.
+> * newstile tables need to be separted from other block level elements.
 {: .markdown-difference}
 
-Here is an example for a kramdown table with a table header row, two table bodies and a table footer
+Here is an example for a newstile table with a table header row, two table bodies and a table footer
 row:
 
     |-----------------+------------+-----------------+----------------|
@@ -818,7 +818,7 @@ three spaces. The following examples show different possibilities to create a ho
 > and [Pandoc] packages.
 {: .markdown-difference}
 
-kramdown has built-in support for block and span level mathematics written in LaTeX.
+newstile has built-in support for block and span level mathematics written in LaTeX.
 
 A math block needs to start and end on [block boundaries](#block-boundaries). It is started using
 two dollar signs, optionally indented up to three spaces. The math block continues until the next
@@ -827,7 +827,7 @@ of a line, i.e. they may only be followed by whitespace characters. The content 
 to be valid LaTeX math. It is always wrapped inside a `\begin{displaymath}...\end{displaymath}`
 enviroment except if it begins with a `\begin` statement.
 
-The following kramdown fragment
+The following newstile fragment
 
     $$
     \begin{align*}
@@ -877,8 +877,8 @@ the beginning of a paragraph, just escape the first dollar sign.
 
 > The original Markdown syntax specifies that an HTML block must start at the left margin, i.e. no
 > indentation is allowed. Also, the HTML block has to be surrounded by blank lines. Both
-> restrictions are lifted for kramdown documents. Additionally, the original syntax does not allow
-> you to use Markdown syntax in HTML blocks which is allowed with kramdown.
+> restrictions are lifted for newstile documents. Additionally, the original syntax does not allow
+> you to use Markdown syntax in HTML blocks which is allowed with newstile.
 {: .markdown-difference}
 
 An HTML block is potentially started if a line is encountered that begins with a non-span-level HTML
@@ -901,7 +901,7 @@ content is parsed:
   this one tag (see below).
 
   Note that only correct XHTML is supported! This means that you have to use, for example, `<hr />`
-  instead of `<hr>` (although kramdown tries to fix such things if possible). If an invalid closing
+  instead of `<hr>` (although newstile tries to fix such things if possible). If an invalid closing
   tag is found, it is ignored.
 
 * Parse as block level elements: If the HTML/XML tag content should be parsed as text containing
@@ -921,7 +921,7 @@ inside a raw HTML block.
 
 Also, if an invalid closing tag is found, it is ignored.
 
-By default, kramdown parses all block HTML tags and all XML tags as raw HTML blocks. However, this
+By default, newstile parses all block HTML tags and all XML tags as raw HTML blocks. However, this
 can be configured with the `parse_block_html`. If this is set to `true`, then syntax parsing in HTML
 blocks is globally enabled. It is also possible to enable/disable syntax parsing on a tag per tag
 basis using the `markdown` attribute:
@@ -1020,7 +1020,7 @@ nesting and invalidly used end tags are removed from the output:
 The parsing of processing instructions and XML comments is also supported. The content of both, PIs
 and XML comments, may span multiple lines. The start of a PI/XML comment may only appear at the
 beginning of a line, optionally indented up to three spaces. If there is text after the end of a PI
-or XML comment, it will be parsed as if it appears on a separate line. kramdown syntax in PIs/XML
+or XML comment, it will be parsed as if it appears on a separate line. newstile syntax in PIs/XML
 comments is not processed:
 
     This is a para.
@@ -1142,7 +1142,7 @@ The link definition for images is exactly the same as the link definition for no
 
 ## Emphasis
 
-kramdown supports two types of emphasis: light and strong emphasis. Text parts that are surrounded
+newstile supports two types of emphasis: light and strong emphasis. Text parts that are surrounded
 with single asterisks `*` or underscores `_` are treated as text with light emphasis, text parts
 surrounded with two asterisks or underscores are treated as text with strong emphasis. Surrounded
 means that the starting delimiter must not be followed by a space and that the stopping delimiter
@@ -1205,10 +1205,10 @@ literal meaning of a backtick you can backslash-escape it:
 HTML tags cannot only be used on the block level but also on the span level. Span level HTML tags
 can only be used inside one block level element, it is not possible to use a start tag in one block
 level element and the end tag in another. Note that only correct XHTML is supported! This means that
-you have to use, for example, `<br />` instead of `<br>` (although kramdown tries to fix such errors
+you have to use, for example, `<br />` instead of `<br>` (although newstile tries to fix such errors
 if possible).
 
-By default, kramdown parses kramdown syntax inside span HTML tags. However, this behaviour can be
+By default, newstile parses newstile syntax inside span HTML tags. However, this behaviour can be
 configured with the `parse_span_html` option. If this is set to `true`, then syntax parsing in HTML
 spans is enabled, if it is set to `false`, parsing is disabled. It is also possible to
 enable/disable syntax parsing on a tag per tag basis using the `markdown` attribute:
@@ -1232,7 +1232,7 @@ Processing instructions and XML comments can also be used (their content is not 
 with HTML tags the start and the end have to appear in the same block level element.
 
 Span level PIs and span level XML comments as well as general span level HTML and XML tags have to
-be preceded by at least one non whitespace character on the same line so that kramdown correctly
+be preceded by at least one non whitespace character on the same line so that newstile correctly
 recognizes them as span level element and not as block level element. However, all span HTML tags,
 i.e. `a`, `em`, `b`, ..., (opening or closing) can appear at the start of a line.
 
@@ -1262,7 +1262,7 @@ single space, for example:
 > the [PHP Markdown Extra] package.
 {: .markdown-difference}
 
-Footnotes in kramdown are similar to reference style links and link definitions. You need to place
+Footnotes in newstile are similar to reference style links and link definitions. You need to place
 the footnote marker in the correct position in the text and the actual footnote content can be
 defined anywhere in the document.
 
@@ -1272,7 +1272,7 @@ optionally followed by other word characters, digits or dashes. For example:
 
     This is some text.[^1]. Other text.[^footnote].
 
-The footnote name has to be unique in the whole kramdown document. Therefore you can't link to the
+The footnote name has to be unique in the whole newstile document. Therefore you can't link to the
 same footnote definition twice. The actual naming of a footnote does not matter since the numbering
 of footnotes is controlled via the position of the footnote markers in the document (the first found
 footnote marker will get the number 1, the second footnote marker the number 2 and so on). If there
@@ -1311,8 +1311,8 @@ Here are some example footnote definitions:
     [^codeblock-note]:
             this is now a code block (8 spaces indentation)
 
-It does not matter where you put a footnote definition in a kramdown document; the content of all
-referenced footnote definitions will be placed at the end of the kramdown document. Not referenced
+It does not matter where you put a footnote definition in a newstile document; the content of all
+referenced footnote definitions will be placed at the end of the newstile document. Not referenced
 footnote definitions are ignored. If more than one footnote definitions have the same footnote name,
 all footnote definitions but the last are ignored.
 
@@ -1323,7 +1323,7 @@ all footnote definitions but the last are ignored.
 > the [PHP Markdown Extra] package.
 {: .markdown-difference}
 
-kramdown provides a syntax to assign the full phrase to an abbreviation. When writing the text, you
+newstile provides a syntax to assign the full phrase to an abbreviation. When writing the text, you
 don't need to do anything special. However, once you add abbreviation definitions, the
 abbreviations in the text get marked up automatically. Abbreviations can consist of any character
 except a closing bracket.
@@ -1337,7 +1337,7 @@ following structure:
   stripped from the full phrase).
 
 Later abbreviation definition for the same abbreviation override prior ones and it does not matter
-where you put an abbreviation definition in a kramdown document. Empty definitions are also allowed.
+where you put an abbreviation definition in a newstile document. Empty definitions are also allowed.
 
 Here are some examples:
 
@@ -1355,7 +1355,7 @@ Here are some examples:
 > The original Markdown syntax does not support these transformations.
 {: .markdown-difference}
 
-kramdown converts the following plain ASCII character into their corresponding typographic symbols:
+newstile converts the following plain ASCII character into their corresponding typographic symbols:
 
 * `---` will become an em-dash (like this ---)
 * `--` will become an en-dash (like this --)
@@ -1366,14 +1366,14 @@ kramdown converts the following plain ASCII character into their corresponding t
   non-breakable space
 
 The parser also replaces normal single `'` and double quotes `"` with "fancy quotes". There *may* be
-times when kramdown falsely replace the quotes. If this is the case, just \'escape\" the quotes and
+times when newstile falsely replace the quotes. If this is the case, just \'escape\" the quotes and
 they won't be replaced with fancy ones.
 
 
 
 # Non-content elements
 
-This section describes the non-content elements that are used in kramdown documents, i.e. elements
+This section describes the non-content elements that are used in newstile documents, i.e. elements
 that don't provide content for the document but have other uses such as separating block level
 elements or attaching attributes to elements.
 
@@ -1395,7 +1395,7 @@ level element that can be used to specify the end of a block level element even 
 element, after which it is used, would continue otherwise. If there is no block level element to
 end, the EOB marker is simply ignored.
 
-You won't find an EOB marker in most kramdown documents but sometimes it is necessary to use it to
+You won't find an EOB marker in most newstile documents but sometimes it is necessary to use it to
 achieve the wanted results which would be impossible otherwise. However, it should only be used when
 absolutely necesary!
 
@@ -1550,7 +1550,7 @@ The syntax for an extension is very similar to the syntax of [ALDs](#attribute-l
 Here are some examples of how to specify extensions and afterwards is the syntax definition:
 
     {::comment}
-    This text is completely ignored by kramdown - a comment in the text.
+    This text is completely ignored by newstile - a comment in the text.
     {:/comment}
 
     Do you see {::comment}this text{:/comment}?
@@ -1589,7 +1589,7 @@ If no end tag can be found for an extension start tag, the start tag is treated 
 body. If an invalid extension stop tag is found, it is ignored. If an invalid extension name is
 specified the extension (and the eventually specified body) are ignored.
 
-The following extensions can be used with kramdown:
+The following extensions can be used with newstile:
 
 `comment`
 
@@ -1597,7 +1597,7 @@ The following extensions can be used with kramdown:
 
 `nomarkdown`
 
-: Don't process the body with kramdown but output it as-is. The attribute `type` specifies which
+: Don't process the body with newstile but output it as-is. The attribute `type` specifies which
   converters should output the body: if the attribute is missing, all converters should output it.
   Otherwise the attribute value has to be a space separated list of converter names and these
   converters should output the body.
@@ -1605,10 +1605,10 @@ The following extensions can be used with kramdown:
 `options`
 
 : Should be used without a body since the body is ignored. Is used for setting the global options
-  for the kramdown processor (for example, to disable automatic header ID generation). Note that
+  for the newstile processor (for example, to disable automatic header ID generation). Note that
   options that are used by the parser are immediately effective whereas all other options are not!
   This means, for example, that it is not possible to set converter options only for some part of a
-  kramdown document.
+  newstile document.
 
 
 

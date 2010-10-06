@@ -37,7 +37,7 @@ require 'rake/packagetask'
 require 'erb'
 
 $:.unshift('lib')
-require 'kramdown'
+require 'newstile'
 
 # End user tasks ################################################################
 
@@ -62,7 +62,7 @@ if defined? Webgen
     site.config_block = lambda do |config|
       config['sources'] = [['/', "Webgen::Source::FileSystem", 'doc']]
       config['output'] = ['Webgen::Output::FileSystem', 'htmldoc']
-      config.default_processing_pipeline('Page' => 'erb,tags,kramdown,blocks,fragments')
+      config.default_processing_pipeline('Page' => 'erb,tags,newstile,blocks,fragments')
       config.optionsdisplay.items [], :mandatory => 'default'
       config.kdlink.oid nil, :mandatory => true
       config.kdlink.part nil, :mandatory => true
@@ -76,8 +76,8 @@ end
 if defined? Rake::RDocTask
   rd = Rake::RDocTask.new do |rdoc|
     rdoc.rdoc_dir = 'htmldoc/rdoc'
-    rdoc.title = 'kramdown'
-    rdoc.main = 'Kramdown'
+    rdoc.title = 'newstile'
+    rdoc.main = 'Newstile'
     rdoc.options << '--line-numbers'
     rdoc.rdoc_files.include('lib/**/*.rb')
   end
@@ -97,14 +97,14 @@ end
 
 namespace :dev do
 
-  SUMMARY = 'kramdown is a fast, pure-Ruby Markdown-superset converter.'
+  SUMMARY = 'newstile is a fast, pure-Ruby Markdown-superset converter.'
   DESCRIPTION = <<EOF
-kramdown is yet-another-markdown-parser but fast, pure Ruby,
+newstile is yet-another-markdown-parser but fast, pure Ruby,
 using a strict syntax definition and supporting several common extensions.
 EOF
 
   begin
-    REL_PAGE = Webgen::Page.from_data(File.read('doc/news/release_' + Kramdown::VERSION.split('.').join('_') + '.page'))
+    REL_PAGE = Webgen::Page.from_data(File.read('doc/news/release_' + Newstile::VERSION.split('.').join('_') + '.page'))
   rescue
     puts 'NO RELEASE NOTES/CHANGES FILE'
   end
@@ -117,7 +117,7 @@ EOF
                             'bin/*',
                             'benchmark/*',
                             'lib/**/*.rb',
-                            'man/man1/kramdown.1',
+                            'man/man1/newstile.1',
                             'data/**/*',
                             'doc/**',
                             'test/**/*'
@@ -126,7 +126,7 @@ EOF
   CLOBBER << "VERSION"
   file 'VERSION' do
     puts "Generating VERSION file"
-    File.open('VERSION', 'w+') {|file| file.write(Kramdown::VERSION + "\n")}
+    File.open('VERSION', 'w+') {|file| file.write(Newstile::VERSION + "\n")}
   end
 
   CLOBBER << 'ChangeLog'
@@ -143,15 +143,15 @@ EOF
     `git log | grep ^Author: | sed 's/^Author: //' | sort | uniq -c | sort -nr >> CONTRIBUTERS`
   end
 
-  CLOBBER << "man/man1/kramdown.1"
-  file 'man/man1/kramdown.1' => ['man/man1/kramdown.1.erb'] do
-    puts "Generating kramdown man page"
-    File.open('man/man1/kramdown.1', 'w+') do |file|
-      file.write(ERB.new(File.read('man/man1/kramdown.1.erb')).result(binding))
+  CLOBBER << "man/man1/newstile.1"
+  file 'man/man1/newstile.1' => ['man/man1/newstile.1.erb'] do
+    puts "Generating newstile man page"
+    File.open('man/man1/newstile.1', 'w+') do |file|
+      file.write(ERB.new(File.read('man/man1/newstile.1.erb')).result(binding))
     end
   end
 
-  Rake::PackageTask.new('kramdown', Kramdown::VERSION) do |pkg|
+  Rake::PackageTask.new('newstile', Newstile::VERSION) do |pkg|
     pkg.need_tar = true
     pkg.need_zip = true
     pkg.package_files = PKG_FILES
@@ -161,8 +161,8 @@ EOF
     spec = Gem::Specification.new do |s|
 
       #### Basic information
-      s.name = 'kramdown'
-      s.version = Kramdown::VERSION
+      s.name = 'newstile'
+      s.version = Newstile::VERSION
       s.summary = SUMMARY
       s.description = DESCRIPTION
 
@@ -170,20 +170,20 @@ EOF
       s.files = PKG_FILES.to_a
 
       s.require_path = 'lib'
-      s.executables = ['kramdown']
-      s.default_executable = 'kramdown'
+      s.executables = ['newstile']
+      s.default_executable = 'newstile'
 
       #### Documentation
 
       s.has_rdoc = true
-      s.rdoc_options = ['--line-numbers', '--main', 'Kramdown']
+      s.rdoc_options = ['--line-numbers', '--main', 'Newstile']
 
       #### Author and project details
 
       s.author = 'Thomas Leitner'
       s.email = 't_leitner@gmx.at'
-      s.homepage = "http://kramdown.rubyforge.org"
-      s.rubyforge_project = 'kramdown'
+      s.homepage = "http://newstile.rubyforge.org"
+      s.rubyforge_project = 'newstile'
     end
 
     Rake::GemPackageTask.new(spec) do |pkg|
@@ -194,7 +194,7 @@ EOF
   end
 
   if defined?(RubyForge) && defined?(Webgen) && defined?(Gem) && defined?(Rake::RDocTask)
-    desc 'Release Kramdown version ' + Kramdown::VERSION
+    desc 'Release Newstile version ' + Newstile::VERSION
     task :release => [:clobber, :package, :publish_files, :publish_website, :post_news]
   end
 
@@ -211,11 +211,11 @@ EOF
       rf.userconfig["release_notes"] = REL_PAGE.blocks['content'].content
       rf.userconfig["preformatted"] = false
 
-      files = %w[.gem .tgz .zip].collect {|ext| "pkg/kramdown-#{Kramdown::VERSION}" + ext}
+      files = %w[.gem .tgz .zip].collect {|ext| "pkg/newstile-#{Newstile::VERSION}" + ext}
 
-      rf.add_release('kramdown', 'kramdown', Kramdown::VERSION, *files)
+      rf.add_release('newstile', 'newstile', Newstile::VERSION, *files)
 
-      sh "gem push pkg/kramdown-#{Kramdown::VERSION}.gem"
+      sh "gem push pkg/newstile-#{Newstile::VERSION}.gem"
       puts 'done'
     end
 
@@ -228,15 +228,15 @@ EOF
       rf.login
 
       content = REL_PAGE.blocks['content'].content
-      content += "\n\n\nAbout kramdown\n\n#{SUMMARY}\n\n#{DESCRIPTION}"
-      rf.post_news('kramdown', "kramdown #{Kramdown::VERSION} released", content)
+      content += "\n\n\nAbout newstile\n\n#{SUMMARY}\n\n#{DESCRIPTION}"
+      rf.post_news('newstile', "newstile #{Newstile::VERSION} released", content)
       puts "done"
     end
   end
 
   desc "Upload the website to Rubyforge"
   task :publish_website => ['doc'] do
-    sh "rsync -avc --delete --exclude 'wiki' --exclude 'js/jsMath' --exclude 'robots.txt'  htmldoc/ gettalong@rubyforge.org:/var/www/gforge-projects/kramdown/"
+    sh "rsync -avc --delete --exclude 'wiki' --exclude 'js/jsMath' --exclude 'robots.txt'  htmldoc/ gettalong@rubyforge.org:/var/www/gforge-projects/newstile/"
   end
 
 
@@ -252,9 +252,9 @@ EOF
 #--
 # Copyright (C) 2009-2010 Thomas Leitner <t_leitner@gmx.at>
 #
-# This file is part of kramdown.
+# This file is part of newstile.
 #
-# kramdown is free software: you can redistribute it and/or modify
+# newstile is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
@@ -301,7 +301,7 @@ if defined? Webgen
 
     def call(tag, body, context)
       param('optionsdisplay.items').collect do |opt|
-        Kramdown::Options.definitions[opt]
+        Newstile::Options.definitions[opt]
       end.collect do |term|
         lines = term.desc.split(/\n/)
         first = lines.shift
@@ -319,7 +319,7 @@ if defined? Webgen
     include Webgen::Tag::Base
 
     def call(tag, body, context)
-      result = ::Kramdown::Document.new(body, :auto_ids => false).to_html
+      result = ::Newstile::Document.new(body, :auto_ids => false).to_html
       before = "<pre class='kdexample-before'>#{body}<code>\n</code></pre>"
       after = "<pre class='kdexample-after-source'>#{CGI::escapeHTML(result)}<code>\n</code></pre>"
       afterhtml = "<div class='kdexample-after-live'>#{result}</div>"

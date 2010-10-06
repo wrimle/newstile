@@ -3,14 +3,14 @@ title: HTML Converter
 ---
 # HTML Converter
 
-This converter converts a kramdown element tree into a HTML fragment and supports all available
+This converter converts a newstile element tree into a HTML fragment and supports all available
 element types. Below is a list of additional features of the HTML converter as well as some
 additional information.
 
 
 ## Automatic Generation of Header IDs    {#auto-ids}
 
-kramdown supports the automatic generation of header IDs if the option `auto_ids` is set to `true`
+newstile supports the automatic generation of header IDs if the option `auto_ids` is set to `true`
 (which is the default). This is done by converting the untransformed, i.e. plain, header text via the
 following steps:
 
@@ -80,7 +80,7 @@ following CSS classes:
 
 ## Automatic Syntax Highlighting   {#syntax-highlighting}
 
-kramdown supports syntax highlighting of code blocks and code spans. Just add the key `lang` to a
+newstile supports syntax highlighting of code blocks and code spans. Just add the key `lang` to a
 code block (using a [block IAL](../syntax.html#block-ials) or a [span
 IAL](../syntax.html#span-ials)) and it will be highlighted using the specified language.
 
@@ -90,9 +90,9 @@ supported languages.
 
 Here is an example on how Ruby code is highlighted:
 
-    require 'kramdown'
+    require 'newstile'
 
-    Kramdown::Document.new('* something').to_html
+    Newstile::Document.new('* something').to_html
     puts 1 + 1
 {: lang='ruby'}
 
@@ -100,7 +100,7 @@ Here is an example on how Ruby code is highlighted:
 ## Math Support
 
 If you want math formulas correctly displayed, you have to include the [jsMath] javascript library
-in the HTML file (see the [jsMath homepage][jsMath] for details). Note that kramdown does *not* ship
+in the HTML file (see the [jsMath homepage][jsMath] for details). Note that newstile does *not* ship
 with the jsMath library and that therefore the `default` template does *not* include a link to it!
 
 Why jsMath? Because I think that it is simply the best way to display LaTeX math formulas on the
@@ -109,13 +109,13 @@ Web.
 
 ## Emphasis
 
-kramdown uses the HTML element `em` to style light and the element `strong` to style strong
+newstile uses the HTML element `em` to style light and the element `strong` to style strong
 emphasized text parts.
 
 
 ## Automatic "Table of Contents" Generation    {#toc}
 
-kramdown supports the automatic generation of the table of contents of all headers that have an ID
+newstile supports the automatic generation of the table of contents of all headers that have an ID
 set. Just assign the reference name "toc" to an ordered or unordered list by using an IAL and the
 list will be replaced with the actual table of contents, rendered as nested unordered lists if "toc"
 was applied to an unordered list or else as nested ordered lists. All attributes applied to the

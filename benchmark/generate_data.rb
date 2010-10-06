@@ -2,7 +2,7 @@ require 'benchmark'
 require 'optparse'
 require 'fileutils'
 
-require 'kramdown'
+require 'newstile'
 require 'maruku'
 require 'maruku/version'
 begin
@@ -75,8 +75,8 @@ if options[:historic]
   MULTIPLIER.each_with_index do |m, i|
     $stderr.puts "Generating historic benchmark data, multiplier #{m}"
     mddata = BMDATA*m
-    Benchmark::measure { Kramdown::Document.new(mddata).to_html }
-    data[i+1] << " %10.5f" % Benchmark::measure { Kramdown::Document.new(mddata).to_html }.real
+    Benchmark::measure { Newstile::Document.new(mddata).to_html }
+    data[i+1] << " %10.5f" % Benchmark::measure { Newstile::Document.new(mddata).to_html }.real
   end
   File.open(historic, 'w+') do |f|
     data.each {|l| f.puts l}

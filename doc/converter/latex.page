@@ -3,7 +3,7 @@ title: LaTeX Converter
 ---
 # LaTeX Converter
 
-This converter converts a kramdown element tree into LaTeX. It supports all available element types
+This converter converts a newstile element tree into LaTeX. It supports all available element types
 except the HTML specific ones. The LaTeX document can, for example, further be converted to a PDF
 file to produce a high quality, printable version.
 
@@ -62,12 +62,12 @@ headers:
 
 It is possible to change the header types by writing some code, like in the following example:
 
-    require 'kramdown'
+    require 'newstile'
 
     my_headers = {1 => 'chapter', 2 => 'section', 3 => 'subsection', 4 => 'subsubsection'}
-    Kramdown::Converter::Latex::HEADER_TYPES.merge!(my_headers)
+    Newstile::Converter::Latex::HEADER_TYPES.merge!(my_headers)
 
-    puts Kramdown::Document.new(ARGF.read).to_latex
+    puts Newstile::Document.new(ARGF.read).to_latex
 {: lang="ruby"}
 
 
@@ -82,12 +82,12 @@ The default quotation marks that are used are the English ones:
 
 You can change the used quotation marks by writing some code, like in the following example:
 
-    require 'kramdown'
+    require 'newstile'
 
     my_quotes = {:lsquo => '\\glq{}', :rsquo => '\\grq{}', :ldquo => '"`', :rdquo => '"\''}
-    Kramdown::Converter::Latex::SMART_QUOTE_SYMS.merge!(my_quotes)
+    Newstile::Converter::Latex::SMART_QUOTE_SYMS.merge!(my_quotes)
 
-    puts Kramdown::Document.new(ARGF.read).to_latex
+    puts Newstile::Document.new(ARGF.read).to_latex
 {: lang="ruby"}
 
 

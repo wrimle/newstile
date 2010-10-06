@@ -15,7 +15,7 @@ sort_info: 30
 context.content_node.tree.node_access[:alcn].select do |na,no|
   na =~ /\/news\/.+/ && no.is_file?
 end.collect {|na,no| no}.sort.reverse.each do |node|
-  context.options['contentprocessor.kramdown.options'] = {:auto_id_prefix => node.lcn.tr('.', '-')}
+  context.options['contentprocessor.newstile.options'] = {:auto_id_prefix => node.lcn.tr('.', '-')}
 %>
 
 <div class='news-item'>

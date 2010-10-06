@@ -1,0 +1,19 @@
+---
+title: newstile Converter
+---
+# newstile Converter
+
+This converter converts a newstile element tree into a newstile document and supports all available
+element types. This converter, together with the [HTML parser](../parser/html.html), can be used to
+convert HTML documents to newstile documents.
+
+Another use would be to format a badly styled newstile document (i.e. one with wrapped lines,
+multiple different indentations used in one list, ...).
+
+
+## Options
+
+The newstile converter supports the following options:
+
+{options: {items: [:entity_output, :template]}}
+

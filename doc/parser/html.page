@@ -8,7 +8,7 @@ that have a native element representation to their native representation -- all 
 as processing instructions and HTML comments are parsed as is.
 
 
-## Conversion of HTML tags to native kramdown elements
+## Conversion of HTML tags to native newstile elements
 
 Here is a description of the HTML tags that have native representations and how they are converted:
 

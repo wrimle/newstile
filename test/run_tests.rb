@@ -3,9 +3,9 @@
 #--
 # Copyright (C) 2009 Thomas Leitner <t_leitner@gmx.at>
 #
-# This file is part of kramdown.
+# This file is part of newstile.
 #
-# kramdown is free software: you can redistribute it and/or modify
+# newstile is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
@@ -21,7 +21,7 @@
 #
 
 $:.unshift File.dirname(__FILE__) + '/../lib'
-require 'kramdown'
+require 'newstile'
 require 'test/unit/assertions'
 require 'yaml'
 
@@ -46,7 +46,7 @@ Dir[arg].each {|f| fwidth = [fwidth, f.length + 10].max }.each do |file|
   opts_file = file.sub('.text', '.options')
   opts_file = File.join(File.dirname(file), 'options') if !File.exist?(opts_file)
   options = File.exist?(opts_file) ? YAML::load(File.read(opts_file)) : {:auto_ids => false, :footnote_nr => 1}
-  doc = Kramdown::Document.new(File.read(file), options)
+  doc = Newstile::Document.new(File.read(file), options)
   begin
     assert_equal(File.read(html_file), doc.to_html)
     puts 'PASSED'
