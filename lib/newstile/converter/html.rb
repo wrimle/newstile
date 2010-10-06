@@ -114,6 +114,10 @@ module Newstile
         "#{' '*indent}<blockquote#{html_attributes(el)}>\n#{inner(el, indent, opts)}#{' '*indent}</blockquote>\n"
       end
 
+      def convert_summary(el, indent, opts)
+        "#{' '*indent}<p#{html_attributes(el)}><b>#{inner(el, indent, opts)}#{' '*indent}</b></p>\n"
+      end
+
       def convert_header(el, indent, opts)
         el = Marshal.load(Marshal.dump(el)) # so that the original is not changed
         if @doc.options[:auto_ids] && !el.attr['id']

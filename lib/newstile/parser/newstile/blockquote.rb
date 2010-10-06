@@ -41,6 +41,23 @@ module Newstile
       define_parser(:blockquote, BLOCKQUOTE_START)
 
 
+      SUMMARY_START = /^#{OPT_SPACE}\/\/\. ?/
+      SUMMARY_MATCH = /(^.*\n)+?(?=#{BLANK_LINE}|#{IAL_BLOCK_START}|#{EOB_MARKER}|^#{OPT_SPACE}#{LAZY_END_HTML_STOP}|^#{OPT_SPACE}#{LAZY_END_HTML_START}|\Z)/
+
+      # Parse the blockquote at the current location.
+      def parse_summary
+        result = @src.scan(SUMMARY_MATCH).gsub!(SUMMARY_START, '')
+        if @tree.children.last && @tree.children.last.type == :summary
+          @tree.children.last.children.first.value << "\n" << result.chomp
+        else
+          @tree.children << new_block_el(:summary)
+          @tree.children.last.children << Element.new(@text_type, result.lstrip.chomp)
+        end
+        true
+      end
+      define_parser(:summary, SUMMARY_START)
+
+
     end
   end
 end
