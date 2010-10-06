@@ -24,7 +24,9 @@ module Newstile
   module Parser
     class Newstile
 
-      TYPOGRAPHIC_SYMS = [['---', :mdash], ['--', :ndash], ['...', :hellip],
+      TYPOGRAPHIC_SYMS = [['---', :mdash], ['--', :ndash], 
+                          ['-.', :qdash], ['-', :qdash],  
+                          ['...', :hellip],
                           ['\\<<', '&lt;&lt;'], ['\\>>', '&gt;&gt;'],
                           ['<< ', :laquo_space], [' >>', :raquo_space],
                           ['<<', :laquo], ['>>', :raquo]]
@@ -45,7 +47,7 @@ module Newstile
           @tree.children << Element.new(:entity, ::Newstile::Utils::Entities.entity('gt'))
         end
       end
-      define_parser(:typographic_syms, TYPOGRAPHIC_SYMS_RE, '--|\\.\\.\\.|(?:\\\\| )?(?:<<|>>)')
+      define_parser(:typographic_syms, TYPOGRAPHIC_SYMS_RE, '-.|--|\\.\\.\\.|(?:\\\\| )?(?:<<|>>)')
 
     end
   end

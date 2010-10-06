@@ -339,7 +339,7 @@ module Newstile
       end
 
       TYPOGRAPHIC_SYMS = {
-        :mdash => '---', :ndash => '--', :hellip => '...',
+        :mdash => '---', :ndash => '--', :qdash => '-.', :hellip => '...',
         :laquo_space => '<< ', :raquo_space => ' >>',
         :laquo => '<<', :raquo => '>>'
       }

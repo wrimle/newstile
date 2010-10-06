@@ -171,6 +171,7 @@ module Newstile
                       [732, 'tilde'],
                       [8211, 'ndash'],
                       [8212, 'mdash'],
+                      [8213, '8213'],
                       [8216, 'lsquo'],
                       [8217, 'rsquo'],
                       [8220, 'ldquo'],
