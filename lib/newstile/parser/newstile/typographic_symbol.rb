@@ -25,7 +25,7 @@ module Newstile
     class Newstile
 
       TYPOGRAPHIC_SYMS = [['---', :mdash], ['--', :ndash], 
-                          ['-.', :qdash], ['-', :qdash],  
+                          ['-. ', :qdash_space], ['- ', :qdash_space],  
                           ['...', :hellip],
                           ['\\<<', '&lt;&lt;'], ['\\>>', '&gt;&gt;'],
                           ['<< ', :laquo_space], [' >>', :raquo_space],

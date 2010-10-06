@@ -36,6 +36,7 @@ module Newstile
     autoload :Html, 'newstile/converter/html'
     autoload :Latex, 'newstile/converter/latex'
     autoload :Newstile, 'newstile/converter/newstile'
+    autoload :Markdown, 'newstile/converter/markdown'
 
   end
 

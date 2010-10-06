@@ -289,7 +289,8 @@ module Newstile
         :raquo_space => [::Newstile::Utils::Entities.entity('nbsp'), ::Newstile::Utils::Entities.entity('raquo')],
         :laquo => [::Newstile::Utils::Entities.entity('laquo')],
         :raquo => [::Newstile::Utils::Entities.entity('raquo')],
-        :qdash => [::Newstile::Utils::Entities.entity('8213')]
+        :qdash => [::Newstile::Utils::Entities.entity('8213')],
+        :qdash_space => [::Newstile::Utils::Entities.entity('8213'), ::Newstile::Utils::Entities.entity('nbsp')]
       }
       def convert_typographic_sym(el, indent, opts)
         TYPOGRAPHIC_SYMS[el.value].map {|e| entity_to_str(e)}.join('')

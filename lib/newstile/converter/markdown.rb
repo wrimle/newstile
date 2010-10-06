@@ -27,7 +27,7 @@ module Newstile
   module Converter
 
     # Converts a Newstile::Document to the newstile format.
-    class Newstile < Base
+    class Markdown < Base
 
       # :stopdoc:
 
@@ -110,7 +110,7 @@ module Newstile
 
       def convert_header(el, opts)
         res = ''
-        res << "#{'!' * el.options[:level]} #{inner(el, opts)}"
+        res << "#{'#' * el.options[:level]} #{inner(el, opts)}"
         res << "   {##{el.attr['id']}}" if el.attr['id']
         res << "\n"
       end
@@ -339,7 +339,7 @@ module Newstile
       end
 
       TYPOGRAPHIC_SYMS = {
-        :mdash => '---', :ndash => '--', :qdash_space => '-. ', :qdash => '-.', :hellip => '...',
+        :mdash => '---', :ndash => '--', :qdash_space => '-- ', :qdash => '--', :hellip => '...',
         :laquo_space => '<< ', :raquo_space => ' >>',
         :laquo => '<<', :raquo => '>>'
       }

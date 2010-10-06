@@ -50,6 +50,7 @@ module Newstile
         el.children.each_with_index do |inner_el, index|
           options[:index] = index
           options[:result] = result
+          puts "convert_#{inner_el.type}"
           result << send("convert_#{inner_el.type}", inner_el, options)
         end
         result
@@ -519,7 +520,7 @@ module Newstile
       end
 
       TYPOGRAPHIC_SYMS = {
-        :mdash => '---', :ndash => '--', :hellip => '\ldots{}',
+        :mdash => '---', :ndash => '--', :qdash_space => "- ", :qdash => "-", :hellip => '\ldots{}',
         :laquo_space => '\guillemotleft{}~', :raquo_space => '~\guillemotright{}',
         :laquo => '\guillemotleft{}', :raquo => '\guillemotright{}'
       }
