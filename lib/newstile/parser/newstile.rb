@@ -93,7 +93,7 @@ module Newstile
         @doc.parse_infos[:footnotes] = {}
 
         @block_parsers = [:blank_line, :codeblock, :codeblock_fenced, :blockquote, :table, :atx_header,
-                          :setext_header, :newstile_header, :horizontal_rule, :list, :definition_list, :link_definition, :block_html,
+                          :setext_header, :textile_link, :newstile_header, :horizontal_rule, :list, :definition_list, :link_definition, :block_html,
                           :footnote_definition, :abbrev_definition, :ald, :block_math,
                           :block_extension, :block_ial, :eob_marker, :paragraph]
         @span_parsers =  [:emphasis, :codespan, :autolink, :span_html, :footnote_marker, :link, :smart_quotes, :inline_math,
