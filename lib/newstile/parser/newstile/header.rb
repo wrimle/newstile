@@ -62,8 +62,8 @@ module Newstile
       define_parser(:atx_header, ATX_HEADER_START)
 
 
-      NEWSTILE_HEADER_START = /^\!{1,6}/
-      NEWSTILE_HEADER_MATCH = /^(\!{1,6})(.+?)\s*?#*#{HEADER_ID}\s*?\n/
+      NEWSTILE_HEADER_START = /^\!{1,6}\s/
+      NEWSTILE_HEADER_MATCH = /^(\!{1,6})\s(.+?)\s*?#*#{HEADER_ID}\s*?\n/
 
       # Parse the Atx header at the current location.
       def parse_newstile_header

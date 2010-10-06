@@ -152,10 +152,7 @@ module Newstile
       define_parser(:link, LINK_START, '!?\[')
 
 
-      # Textile links to markdown links
-      #text.gsub!(/\"([^\"]+)"\:(\S+[\w\d\/])/, "[\\1](\\2)")
-
-      TEXTILE_LINK_START = /!?\"([^\"]+)"\:(\S+[\w\d\/])/
+      TEXTILE_LINK_START = /!?\"([^\"]+)"\:([\S+]+)/
       # Parse the link definition at the current location.
       def parse_textile_link
         link_type = (@src.string[@src.pos] == '!'[0] ? :img : :a)
