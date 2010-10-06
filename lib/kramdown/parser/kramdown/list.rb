@@ -52,7 +52,7 @@ module Kramdown
       end
 
 
-      LIST_START_UL = /^(#{OPT_SPACE}[+*-])([\t| ].*?\n)/
+      LIST_START_UL = /^(#{OPT_SPACE}[+*])([\t| ].*?\n)/
       LIST_START_OL = /^(#{OPT_SPACE}\d+\.)([\t| ].*?\n)/
       LIST_START = /#{LIST_START_UL}|#{LIST_START_OL}/
 
