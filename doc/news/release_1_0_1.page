@@ -5,7 +5,7 @@ sort_info: r0100
 created_at: 2010-10-07 08:30:00 +02:00
 modified_at: 2010-10-07 08:30:00 +02:00
 ---
-## newstile 1.0.0 released
+## newstile 1.0.1 released
 
 Forks kramdown, changes namespace from Kramdown to Newstile, adds basic newstile syntax
 handling
@@ -17,6 +17,8 @@ handling
   + You can use -. for quotation dash (auto captalize on mobile platforms)
   + You can use //. to make a full paragraph bold (lead in or summary)
   + You can use ! instead of # in headers (auto capitalize on mobile platforms)
+  + You can link with "link text":http://www.example.com
+  + You can insert images with "alt text":http://www.example.com/image.jpg
 
 
 * Deprecation notes:

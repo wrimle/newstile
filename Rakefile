@@ -97,10 +97,11 @@ end
 
 namespace :dev do
 
-  SUMMARY = 'newstile is a fast, pure-Ruby Markdown-superset converter.'
+  SUMMARY = 'newstile is a fast, pure-Ruby Newstile converter.'
   DESCRIPTION = <<EOF
-newstile is yet-another-markdown-parser but fast, pure Ruby,
-using a strict syntax definition and supporting several common extensions.
+newstile is parser for the newstile dialect of markdown. Newstile is optimised
+for typing on mobile devices like iPhone and Andorid mobiles. It is forked
+from Thomas Leitner's kramdown, which is a fast, pure Ruby, markdown parser.
 EOF
 
   begin
@@ -180,10 +181,9 @@ EOF
 
       #### Author and project details
 
-      s.author = 'Thomas Leitner'
-      s.email = 't_leitner@gmx.at'
-      s.homepage = "http://newstile.rubyforge.org"
-      s.rubyforge_project = 'newstile'
+      s.author = 'Thomas Leitner / Rune Myrland'
+      s.email = 'rune@epubify.com'
+      s.homepage = "http://github.com/wrimle/newstile"
     end
 
     Rake::GemPackageTask.new(spec) do |pkg|
