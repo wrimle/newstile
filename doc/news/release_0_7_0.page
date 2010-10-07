@@ -1,13 +1,13 @@
 ---
-title: newstile 0.7.0 released
+title: kramdown 0.7.0 released
 no_output: true
 sort_info: r0007
 created_at: 2010-05-07 12:15:00 +02:00
 modified_at: 2010-05-07 12:15:00 +02:00
 ---
-## newstile 0.7.0 released
+## kramdown 0.7.0 released
 
-This release adds syntax support for abbreviations. This means that newstile is now syntax-wise on
+This release adds syntax support for abbreviations. This means that kramdown is now syntax-wise on
 par with Maruku and PHP Markdown Extra!
 
 Another big change is the extension support: After some discussion on the mailing list (many thanks

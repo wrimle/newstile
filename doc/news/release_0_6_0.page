@@ -1,11 +1,11 @@
 ---
-title: newstile 0.6.0 released
+title: kramdown 0.6.0 released
 no_output: true
 sort_info: r0006
 created_at: 2010-04-06 11:30:00 +02:00
 modified_at: 2010-04-06 11:30:00 +02:00
 ---
-## newstile 0.6.0 released
+## kramdown 0.6.0 released
 
 This release adds syntax support for block and inline LaTeX math (for example: $$e^{i\pi}=?$$).
 Aside from that there are the usual small enhancements and bug fixes.
@@ -18,7 +18,7 @@ Aside from that there are the usual small enhancements and bug fixes.
 
 * Minor changes:
 
-  - Added a man page for the newstile binary
+  - Added a man page for the kramdown binary
   - Added a CLI option for selecting the input format and changed the output format option to `-o`
   - Small syntax change for list items: the last list item text is now also wrapped in a paragraph
     tag if all other list items are.
