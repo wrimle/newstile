@@ -62,15 +62,15 @@ module Newstile
       define_parser(:atx_header, ATX_HEADER_START)
 
 
-      NEWSTILE_HEADER_START = /^\!{1,6}\s/
-      NEWSTILE_HEADER_MATCH = /^(\!{1,6})\s(.+?)\s*?#*#{HEADER_ID}\s*?\n/
+      NEWSTILE_HEADER_START = /^!{1,6} /
+      NEWSTILE_HEADER_MATCH = /^(!{1,6}) +(.+?)\s*?\!*#{HEADER_ID}\s*?\n/
 
-      # Parse the Atx header at the current location.
+      # Parse the newstile header at the current location.
       def parse_newstile_header
         return false if !after_block_boundary?
 
         result = @src.scan(NEWSTILE_HEADER_MATCH)
-        level, text, id = @src[1], @src[2].strip, @src[3]
+        level, text, id = @src[1], @src[2], @src[3]
         el = new_block_el(:header, nil, nil, :level => level.length, :raw_text => text)
         add_text(text, el)
         el.attr['id'] = id if id

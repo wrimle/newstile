@@ -93,11 +93,17 @@ module Newstile
         @doc.parse_infos[:footnotes] = {}
 
         @block_parsers = [:blank_line, :codeblock, :codeblock_fenced, :blockquote, :summary, :table, :atx_header,
-                          :setext_header, :newstile_header, :horizontal_rule, :list, :definition_list, :link_definition, :block_html,
+                          :setext_header, 
+                          :newstile_header, 
+                          :horizontal_rule, :list, :definition_list, :link_definition, :block_html,
                           :footnote_definition, :abbrev_definition, :ald, :block_math,
                           :block_extension, :block_ial, :eob_marker, :paragraph]
-        @span_parsers =  [:emphasis, :codespan, :autolink, :span_html, :footnote_marker, :link, :newstile_link, :smart_quotes, :inline_math,
-                         :span_extension, :span_ial, :html_entity, :typographic_syms, :line_break, :escaped_chars]
+        @span_parsers =  [ 
+                          :emphasis, :codespan, :autolink, :span_html, :footnote_marker, :link, 
+                          :newstile_link, 
+                          :smart_quotes, 
+                          :inline_math,
+                          :span_extension, :span_ial, :html_entity, :typographic_syms, :line_break, :escaped_chars]
 
       end
       private_class_method(:new, :allocate)

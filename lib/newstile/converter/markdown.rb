@@ -108,6 +108,11 @@ module Newstile
         inner(el, opts).chomp.split(/\n/).map {|l| "> #{l}"}.join("\n") << "\n"
       end
 
+      def convert_summary(el, opts)
+        opts[:indent] += 2
+        inner(el, opts).chomp.split(/\n/).map {|l| "__#{l}__"}.join("\n") << "\n"
+      end
+
       def convert_header(el, opts)
         res = ''
         res << "#{'#' * el.options[:level]} #{inner(el, opts)}"

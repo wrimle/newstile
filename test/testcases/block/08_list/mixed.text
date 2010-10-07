@@ -2,11 +2,11 @@ With tabs/spaces, no paras:
 
 *	item1
 +   item2
--	item3
+*	item3
 
 With tabs/spaces, paras:
 
--	item1
++	item1
 
 *   item2
 

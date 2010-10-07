@@ -152,19 +152,20 @@ module Newstile
       define_parser(:link, LINK_START, '!?\[')
 
 
-      NEWSTILE_LINK_START = /!?\"([^\"]+)\"\:([\S]+[\w\/])/
+      NEWSTILE_LINK_START = /!?([^\\]?)\"([^\"]+)\"\:([\S]+[\w\/])/
       # Parse the link definition at the current location.
       def parse_newstile_link
         link_type = (@src.string[@src.pos] == '!'[0] ? :img : :a)
         @src.pos += @src.matched_size
+        add_text @src[1] if @src[1]
         case link_type
         when :a then
-          text, href = @src[1], @src[2]
+          text, href = @src[2], @src[3]
           el = Element.new(:a, nil, {'href' => href})
           el.children = [ Element.new(:text, text) ]
           @tree.children << el
         when :img then
-          alt, src = @src[1], @src[2]
+          alt, src = @src[2], @src[3]
           el = Element.new(:img, nil, {'src' => src, 'alt' => alt})
           @tree.children << el
         end
